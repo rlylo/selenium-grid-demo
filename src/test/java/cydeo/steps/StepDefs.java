@@ -19,6 +19,8 @@ public class StepDefs {
     public void i_am_on_the_home_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("practice_url"));
         BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
+
     }
     @When("I clicked {string} page")
     public void i_clicked_page(String pageText) {
@@ -28,6 +30,8 @@ public class StepDefs {
     public void i_fill_the_form_with_valid_credentails() {
 
         practicePage.login();
+
+        BrowserUtils.waitFor(5);
 
     }
     @Then("I should see {string} message")
