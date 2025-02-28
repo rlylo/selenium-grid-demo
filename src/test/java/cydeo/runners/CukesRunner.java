@@ -16,3 +16,33 @@ import org.junit.runner.RunWith;
         publish = true
 )
 public class CukesRunner {}
+
+/* How to run your project locally ?
+
+    - RUN
+        - CukesRunner
+        - Maven
+    - Java
+    - Git
+        - Push || Pull
+        - Make a collabration
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
