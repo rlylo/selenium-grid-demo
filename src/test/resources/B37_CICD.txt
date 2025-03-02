@@ -1,0 +1,182 @@
+
+
+CICD Live - B37 
+
+Wednesday CICD 02 --> Today Agenda 
+
+- General review 
+- My First Job
+- Smoke 
+- Regression 
+- Build Periodically 
+- Build with Params ( Friday - Sunday )
+
+
+? Private repository Executions 
+? Trigger from Github
+
+
+---------------------------
+
+Friday SG Live 02 --> Today Agenda 
+
+- What is Jenkins ? 
+
+- What is Selenium Grid ? 
+
+
+  LOCAL 
+     - CukesRunner 
+     		- browser=remote-chrome
+     		- Execution will happen one by one, even if SG has available nodes for executions 
+     		  ( Since execution started from CukesRunner)
+
+
+     - Maven 
+     		- browser=remote-chrome
+     		- Execution will happen PARALLEL 
+
+
+    How Driver Class decide which browser will use ? 
+			
+			String browserType="";
+            if (System.getProperty("BROWSER") == null) {
+                browserType = ConfigurationReader.getProperty("browser");
+            } else {
+                browserType = System.getProperty("BROWSER");
+            }
+
+
+        Scn 01 --> 
+
+        	config.properties 
+        		browser=chrome
+
+        		mvn test 
+
+        		Execution will happen local browser since we did not provide any 
+        		Parameter from command line to select which browser gonna work 
+
+
+        Scn 02 --> 
+
+        	config.properties 
+        		browser=chrome
+
+        		mvn test -DBROWSER=remote-chrome 
+
+        		-D --> Define System Property 
+
+        		-DBROWSER=remote-chrome
+
+        		   KEY   = VALUE 
+
+
+        PRACTICE 
+
+        	mvn test -Demail=mike@cydeo.com -Dpass=123456 
+
+        	email - System.getProperty("email");
+        	pass  - System.getProperty("pass");
+
+
+
+  REMOTE (Jenkins)
+     - Maven
+     - System.getEnv();
+
+
+  BUILD with PARAMS
+
+
+
+
+
+---------------------------
+Sunday  
+
+  - CICD Review 
+  	- Pipeline Script
+  		- JenkinsFile 
+  			- From Project
+  			- Sample of Full Pipeline 
+  			- How to update when necessary ? 
+
+
+
+  - What is our role ? 
+
+  	  -Daily 
+  	  	 I have a smoke job which work at XX:XX to check our environmnets working fine( UP and RUNNING) After execution I am checking result of test if any failure I have we trying to find root cause of failure. 
+
+  	  	 CRON EXPRESSION  -> With the help cron we can schedule test execution time in Jenkins 
+  	  	 				  -> Based on expression that we provided Jenkins execution will start 
+  	  	 				   
+  	  	 				   https://crontab.guru
+
+  	  1- Build With Parameters 
+
+  	     I have Build with Parameters job that works according to selected parameters 
+  	     	- BROWSER_TYPE --> chrome,firefox,remote-chrome etc
+  	     	- TEST_TYPE    --> @smoke - @regression 
+  	     	- ENV_TYPE     --> dev - test -stag 
+
+  	  2- Our all tests work in CICD Pipeline.In this pipeline I am responsible to manage teting stesp and keep update automation framework 
+  	        - URL 
+  	        - Commands --> mvn test -Dcucumber.filter.tags=@smoke -DBROWSER=chrome etc    	
+
+
+  - How you schedule your Jenkins Job ?  
+			CRON EXPRESSION  -> With the help cron we can schedule test execution time in Jenkins 
+			  	  	 		 -> Based on expression that we provided Jenkins execution will start 
+			  	  	 				   
+  - Which CICD tool you using ? 
+  			- Jenkins 
+
+  - How do you run your test in Jenkins ?
+  			- Build with Parameters 
+  				I have Build with Parameters job that works according to selected parameters 
+	  	     	- BROWSER_TYPE --> chrome,firefox,remote-chrome etc
+	  	     	- TEST_TYPE    --> @smoke - @regression 
+	  	     	- ENV_TYPE     --> dev - test -stag 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 
+	- I received the AWS Free Tier limit alert as has exceeded 85% of the usage limit for AmazonEC2, What do I do now? 
+
+	Total free usage per MONTH --> 750 hours  --> 12 MONTHS 
+
+	One month max 31 DAYS --> that makes --> 31 x 24 --> 744 hours 
+
+	That means NO WAY to EXCEED LIMITS --> AS LONG AS you have ONLY one server 
+
+	Why you have this message ? 
+
+	26 x 24 --> 624 hours 
+
+	624 / 750 --> 0.83 --> %85 
+
+
+
+
+
+
+
+
+
+
+
+
+
